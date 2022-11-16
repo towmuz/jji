@@ -34,7 +34,7 @@ var init = function(opt) {
 	// Merge of Defaults										
 	o = opt.whiteboard;
 
-	if (o===undefined) return false;
+	if (o===) return false;
 	
 	// Define Markups
 	var _css_thehand = "position:absolute;z-index:1000;top:0px;left:0px;",
@@ -43,8 +43,8 @@ var init = function(opt) {
 		_css_hand_image = "position:absolute; top:0px;left:0px;background-size:contain;background-repeat:no-repeat;background-position:center center;";
 		//opacity:0.2;border:1px dotted rgba(255,0,0,0.2);
 	
-	if (o.movehand!=undefined) o.movehand.markup = '<div class="wb-move-hand wb-thehand" style="'+_css_thehand+'"><div class="wb-hand-inner" style="'+_css_hand_inner+';width:'+o.movehand.width+'px;height:'+o.movehand.height+'px"><div class="wb-hand-scale" ><div class="wb-hand-image" style="'+_css_hand_image+'width:'+o.movehand.width+'px;height:'+o.movehand.height+'px;background-image:url('+o.movehand.src+');"></div></div></div>';
-	if (o.writehand!=undefined)  o.writehand.markup = '<div class="wb-draw-hand wb-thehand" style="'+_css_thehand+'"><div class="wb-hand-inner" style="'+_css_hand_inner+'"><div class="wb-hand-scale" style="'+_css_hand_scale+'"><div class="wb-hand-image" style="'+_css_hand_image+'width:'+o.writehand.width+'px;height:'+o.writehand.height+'px;background-image:url('+o.writehand.src+');"></div></div></div>';
+	if (o.movehand!=) o.movehand.markup = '<div class="wb-move-hand wb-thehand" style="'+_css_thehand+'"><div class="wb-hand-inner" style="'+_css_hand_inner+';width:'+o.movehand.width+'px;height:'+o.movehand.height+'px"><div class="wb-hand-scale" ><div class="wb-hand-image" style="'+_css_hand_image+'width:'+o.movehand.width+'px;height:'+o.movehand.height+'px;background-image:url('+o.movehand.src+');"></div></div></div>';
+	if (o.writehand!=)  o.writehand.markup = '<div class="wb-draw-hand wb-thehand" style="'+_css_thehand+'"><div class="wb-hand-inner" style="'+_css_hand_inner+'"><div class="wb-hand-scale" style="'+_css_hand_scale+'"><div class="wb-hand-image" style="'+_css_hand_image+'width:'+o.writehand.width+'px;height:'+o.writehand.height+'px;background-image:url('+o.writehand.src+');"></div></div></div>';
 	
 	
 	jQuery(window).resize(function() {
@@ -66,13 +66,13 @@ var init = function(opt) {
 		
 		var obj_wb = obj.layersettings.whiteboard;
 
-		if (obj_wb != undefined) {
+		if (obj_wb != ) {
 			if (obj_wb.configured!=true) {
 				if (obj_wb.hand_function=="write" || obj_wb.hand_function=="draw") {
-					obj_wb.jitter_distance = obj_wb.jitter_distance!=undefined ? parseInt(obj_wb.jitter_distance,0)/100 : parseInt(o.writehand.jittering.distance,0)/100;
-					obj_wb.jitter_distance_horizontal = obj_wb.jitter_distance_horizontal!=undefined ? parseInt(obj_wb.jitter_distance_horizontal,0)/100 : parseInt(o.writehand.jittering.distance_horizontal,0)/100;
-					obj_wb.jitter_offset = obj_wb.jitter_offset!=undefined ? parseInt(obj_wb.jitter_offset,0)/100 : parseInt(o.writehand.jittering.offset,0)/100;
-					obj_wb.jitter_offset_horizontal = obj_wb.jitter_offset_horizontal!=undefined ? parseInt(obj_wb.jitter_offset_horizontal,0)/100 : parseInt(o.writehand.jittering.offset_horizontal,0)/100;
+					obj_wb.jitter_distance = obj_wb.jitter_distance!= ? parseInt(obj_wb.jitter_distance,0)/100 : parseInt(o.writehand.jittering.distance,0)/100;
+					obj_wb.jitter_distance_horizontal = obj_wb.jitter_distance_horizontal!= ? parseInt(obj_wb.jitter_distance_horizontal,0)/100 : parseInt(o.writehand.jittering.distance_horizontal,0)/100;
+					obj_wb.jitter_offset = obj_wb.jitter_offset!= ? parseInt(obj_wb.jitter_offset,0)/100 : parseInt(o.writehand.jittering.offset,0)/100;
+					obj_wb.jitter_offset_horizontal = obj_wb.jitter_offset_horizontal!= ? parseInt(obj_wb.jitter_offset_horizontal,0)/100 : parseInt(o.writehand.jittering.offset_horizontal,0)/100;
 					obj_wb.hand_type = obj_wb.hand_type || o.writehand.handtype;
 				}
 				if (obj_wb.hand_function=="move") {					
@@ -139,7 +139,7 @@ var lookForNextLayer = function(obj) {
 		var c = jQuery(this),
 			_ = c.data();
 		
-		if (_.active!=true && _.whiteboard!=undefined && _.whiteboard["hand_function"]!="move") {
+		if (_.active!=true && _.whiteboard!= && _.whiteboard["hand_function"]!="move") {
 			if (parseInt(_.frames[0].delay,0)<retobj.startat) {
 				retobj.obj = c;
 				retobj.startat = parseInt(_.frames[0].delay,0);
@@ -164,9 +164,9 @@ var moveBetweenStages = function(opt,obj,wb) {
 		// IF HAND HAS TO MOVE TO NEXT POSSIBLE ITEM
 
 		var nextobj = lookForNextLayer(obj);			
-		if (nextobj!=undefined && nextobj.obj.length>0) {
+		if (nextobj!= && nextobj.obj.length>0) {
 			var hi = hand.find('.wb-hand-inner'),	
-				le = _.timeline!=undefined && _.timeline._labels!=undefined &&  _.timeline._labels.frame_0_end!=undefined ? _.timeline._labels.frame_0_end : 0,
+				le = _.timeline!= && _.timeline._labels!= &&  _.timeline._labels.frame_0_end!= ? _.timeline._labels.frame_0_end : 0,
 				s = nextobj.startat/1000 - le,
 				pos = jQuery(_._pw).position(),
 				posnew = nextobj.obj.data('_pw').position(),
@@ -286,7 +286,7 @@ var animateHand = function(obj,wb) {
 			var s = _d.frames[obj.frame_index].speed/1000;
 			
 			// IF IT IS A TEXT, WRITE TEXT
-			if (_d.splittext!= undefined && _d.splittext!="none") {					
+			if (_d.splittext!=  && _d.splittext!="none") {					
 				
 				wb.tweens = obj.layersettings.timeline.getChildren(true,true,false);
 
@@ -298,7 +298,7 @@ var animateHand = function(obj,wb) {
 							w=el.width(),
 							h=el.height();
 										
-						if 	(el!==undefined && el.html() !==undefined && el.html().length>0 && el.html().charCodeAt(0)!=9 && el.html().charCodeAt(0)!=10) {										
+						if 	(el!== && el.html() !== && el.html().length>0 && el.html().charCodeAt(0)!=9 && el.html().charCodeAt(0)!=10) {										
 							var pos = el.position(),
 								pa = el.parent(),
 								papa = pa.parent(),								
@@ -317,8 +317,8 @@ var animateHand = function(obj,wb) {
 								y = papa.position().top + y;
 							}
 														
-							wb.rotatespeed = wb.hand_angle_repeat !== undefined ? (parseFloat(speed)/parseFloat(wb.hand_angle_repeat)) : speed>1 ? speed/6 : speed>0.5 ? speed/6 : speed / 3;
-							wb.jitterspeed = wb.jitter_repeat !== undefined ? (parseFloat(speed)/parseFloat(wb.jitter_repeat)) : speed>1 ? speed/6 : speed>0.5 ? speed/6 : speed / 3;
+							wb.rotatespeed = wb.hand_angle_repeat !==  ? (parseFloat(speed)/parseFloat(wb.hand_angle_repeat)) : speed>1 ? speed/6 : speed>0.5 ? speed/6 : speed / 3;
+							wb.jitterspeed = wb.jitter_repeat !==  ? (parseFloat(speed)/parseFloat(wb.jitter_repeat)) : speed>1 ? speed/6 : speed>0.5 ? speed/6 : speed / 3;
 
 							if (wb.current_y_offset != y) speed = 0.1;
 
@@ -355,8 +355,8 @@ var animateHand = function(obj,wb) {
 					disver = (_d.eoh*wb.jitter_distance),
 					offver = (_d.eoh*wb.jitter_offset);
 					
-					wb.rotatespeed = wb.hand_angle_repeat !== undefined ? (parseFloat(s)/parseFloat(wb.hand_angle_repeat)) : s>1 ? s/6 : s>0.5 ? s/6 : s / 3;
-					wb.jitterspeed = wb.jitter_repeat !== undefined ? (parseFloat(s)/parseFloat(wb.jitter_repeat)) : s>1 ? s/6 : s>0.5 ? s/6 : s / 3;
+					wb.rotatespeed = wb.hand_angle_repeat !==  ? (parseFloat(s)/parseFloat(wb.hand_angle_repeat)) : s>1 ? s/6 : s>0.5 ? s/6 : s / 3;
+					wb.jitterspeed = wb.jitter_repeat !==  ? (parseFloat(s)/parseFloat(wb.jitter_repeat)) : s>1 ? s/6 : s>0.5 ? s/6 : s / 3;
 					
 
 			 	if (wb.hand_direction=="right_to_left")	{
